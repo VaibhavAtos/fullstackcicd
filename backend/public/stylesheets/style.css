@@ -1,0 +1,37 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.for
+{
+  
+  justify-content: center;
+}
+
+.orr
+{
+  width: 30%;
+  background-color: rgb(238, 238, 238);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.nor
+{
+  padding: 80px;
+}
+
+
+.orr2
+{
+  width: 60%;
+  background-color: rgb(238, 238, 238);
+  padding: 20px;
+  border-radius: 10px;
+}
