@@ -36,4 +36,4 @@ jobs:
         working-directory: ./frontend
         # Build image with tag rakeshpotnuru/productivity-app:client
         run: |
-          docker build -t vaibhavatosm22/fullstackMean:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackMean-app:frontend-latest .
+          docker build -t vaibhavatosm22/fullstackmean:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:frontend-latest .
