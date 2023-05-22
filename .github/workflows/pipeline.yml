@@ -37,3 +37,34 @@ jobs:
         # Build image with tag rakeshpotnuru/productivity-app:client
         run: |
           docker build -t vaibhavatosm22/fullstackmean:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:frontend-latest .
+
+ # Build a Docker image for the server application
+      - name: Build Server Docker Image
+        working-directory:
+          ./backend
+          # Build image with tag rakeshpotnuru/productivity-app:server
+        run: |
+          docker build -t vaibhavatosm22/fullstackmean:backend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:backend-latest .
+
+      # # Build a Docker image for the NGINX reverse proxy
+      # - name: Build NGINX Docker Image
+      #   working-directory: ./nginx
+      #   # Build image with tag rakeshpotnuru/productivity-app:nginx
+      #   run: |
+      #     docker build -t rakeshpotnuru/productivity-app:nginx-${{github.run_number}} -t rakeshpotnuru/productivity-app:nginx-latest .
+
+ # Log in to Docker Hub using credentials from repository secrets
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Push the Docker images to Docker Hub
+      - name: Push Docker Images to Docker Hub
+        run: |
+          docker push vaibhavatosm22/fullstackmean-app:frontend-${{github.run_number}}
+          docker push vaibhavatosm22/fullstackmean-app:backend-${{github.run_number}}
+          docker push vaibhavatosm22/fullstackmean-app:frontend-latest
+          docker push vaibhavatosm22/fullstackmean-app:backend-latest
+          
