@@ -36,7 +36,7 @@ jobs:
         working-directory: ./frontend
         # Build image with tag rakeshpotnuru/productivity-app:client
         run: |
-          docker build -t vaibhavatosm22/fullstackmean:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:frontend-latest .
+          docker build -t vaibhavatosm22/fullstackmean-app:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:frontend-latest .
 
  # Build a Docker image for the server application
       - name: Build Server Docker Image
@@ -44,7 +44,7 @@ jobs:
           ./backend
           # Build image with tag rakeshpotnuru/productivity-app:server
         run: |
-          docker build -t vaibhavatosm22/fullstackmean:backend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:backend-latest .
+          docker build -t vaibhavatosm22/fullstackmean-app:backend-${{github.run_number}} -t vaibhavatosm22/fullstackmean-app:backend-latest .
 
       # # Build a Docker image for the NGINX reverse proxy
       # - name: Build NGINX Docker Image
