@@ -1,4 +1,4 @@
-# First, we have to mention the name of the workflow.
+# The name of the workflow.
 name: Build and Deploy
 
 # Run the workflow when code is pushed to the main branch
@@ -7,18 +7,12 @@ on:
     branches:
       - master
 
-# Set environment variables
-# env:
-#   MONGODB_URI: ${{ secrets.MONGODB_URI }}
-#   TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
-#   EMAIL: ${{ secrets.EMAIL }}
-#   PASSWORD: ${{ secrets.PASSWORD }}    
 # This is the workflow that is being run.
 jobs:
   build-and-deploy:
     # This is telling GitHub to run the workflow on the latest version of Ubuntu.
     runs-on: ubuntu-latest
-steps:
+    steps:
       # Checkout the code from the GitHub repository
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,3 +30,10 @@ steps:
         run: |
           npm install
           npm run test
+
+      # Build a Docker image for the client application
+      - name: Build Client Docker Image
+        working-directory: ./frontend
+        # Build image with tag rakeshpotnuru/productivity-app:client
+        run: |
+          docker build -t vaibhavatosm22/fullstackMean:frontend-${{github.run_number}} -t vaibhavatosm22/fullstackMean-app:frontend-latest .
