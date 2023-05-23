@@ -3,13 +3,6 @@ pipeline {
     // Telling Jenkins to run the pipeline on any available agent.
     agent any
 
-    // Setting environment variables for the build.
-    environment {
-        MONGODB_URI = credentials('mongodb-uri')
-        TOKEN_KEY = credentials('token-key')
-        EMAIL = credentials('email')
-        PASSWORD = credentials('password')
-    }
 
     // This is the pipeline. It is a series of stages that Jenkins will run.
     stages {
@@ -53,14 +46,6 @@ pipeline {
         }
         
         // This stage is telling Jenkins to push the images to DockerHub.
-        stage('Push Images to DockerHub') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push rakeshpotnuru/productivity-app:client-latest'
-                    sh 'docker push rakeshpotnuru/productivity-app:server-latest'
-                }
-            }
-        }
+        
     }
 }
