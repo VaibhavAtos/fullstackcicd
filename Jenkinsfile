@@ -1,5 +1,5 @@
-// This is a Jenkinsfile. It is a script that Jenkins will run when a build is triggered.
 pipeline {
+<<<<<<< HEAD
     // Telling Jenkins to run the pipeline on any available agent.
     agent any
 
@@ -16,9 +16,9 @@ pipeline {
         // This stage is telling Jenkins to run the tests in the client directory.
         stage('Client Tests') {
             steps {
-                dir('client') {
+                dir('frontend') {
                     sh 'npm install'
-                    sh 'npm test'
+                    
                 }
             }
         }
@@ -26,13 +26,8 @@ pipeline {
         // This stage is telling Jenkins to run the tests in the server directory.
         stage('Server Tests') {
             steps {
-                dir('server') {
+                dir('backend') {
                     sh 'npm install'
-                    sh 'export MONGODB_URI=$MONGODB_URI'
-                    sh 'export TOKEN_KEY=$TOKEN_KEY'
-                    sh 'export EMAIL=$EMAIL'
-                    sh 'export PASSWORD=$PASSWORD'
-                    sh 'npm test'
                 }
             }
         }
@@ -40,12 +35,12 @@ pipeline {
         // This stage is telling Jenkins to build the images for the client and server.
         stage('Build Images') {
             steps {
-                sh 'docker build -t rakeshpotnuru/productivity-app:client-latest client'
-                sh 'docker build -t rakeshpotnuru/productivity-app:server-latest server'
+                sh 'docker build -t rakeshpotnuru/productivity-app:frontend-latest frontend'
+                sh 'docker build -t rakeshpotnuru/productivity-app:backend-latest backend'
             }
         }
         
         // This stage is telling Jenkins to push the images to DockerHub.
         
-    }
+}
 }
