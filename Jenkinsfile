@@ -1,8 +1,7 @@
 pipeline {
-  agent {
-     docker {
-          image 'node:17-alpine'
-        }
+  agent any
+   triggers {
+    githubPush()
   }
   stages {
     stage('Checkout') {
