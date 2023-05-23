@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< HEAD
     // Telling Jenkins to run the pipeline on any available agent.
     agent any
 
